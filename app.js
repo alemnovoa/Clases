@@ -1,7 +1,6 @@
 class Cliente {
-     constructor(nombre, apellido, saldo){
+     constructor(nombre, saldo){
           this.nombre = nombre;
-          this.apellido = apellido;
           this.saldo = saldo;
      }
 
@@ -9,25 +8,25 @@ class Cliente {
           return `Hola ${this.nombre}, tu saldo es de : ${this.saldo}`;
      }
 
-     tipoCliente() {
-          let tipo;
-          if(this.saldo > 10000){
-               tipo = 'Gold';
-          } else if (this.saldo > 5000) {
-               tipo = 'Platinum';
-          } else {
-               tipo = 'Normal';
-          }
-          return tipo;
-     }
-
-     retirarSaldo(retiro){
-          return this.saldo -= retiro; // RESTA SALDO DEL CLIENTE
-     }
-
      static bienvenida(){
           return `Bienvenido al cajero`;
      }
 }
 
-console.log(Cliente.bienvenida() );
+//HEREDAR
+class Empresa extends Cliente {
+     constructor(nombre,saldo,telefono,tipo){
+           // super va al constructor padre y leer los valores y asignarlos a nombre y saldo
+          super(nombre, saldo);
+          // no existe en el constructor padre 
+          this.telefono = telefono;
+          this.tipo = tipo;
+     }
+
+     static bienvenida() {
+          return `Bienvenido al cajero para empresas`;
+     }
+}
+
+console.log(Cliente.bienvenida());
+console.log(Empresa.bienvenida());
